@@ -21,7 +21,6 @@ CREATE TABLE employee_salary (
   dept_id INT
 );
 
-
 INSERT INTO employee_demographics (employee_id, first_name, last_name, age, gender, birth_date)
 VALUES
 (1,'Leslie', 'Knope', 44, 'Female','1979-09-25'),
