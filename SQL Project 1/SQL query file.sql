@@ -57,3 +57,21 @@ WHERE
 
 -- these are the ones we want to delete where the row number is > 1 or 2or greater essentially
 
+-- now you may want to write it like this:
+WITH DELETE_CTE AS 
+(
+SELECT *
+FROM (
+	SELECT company, location, industry, total_laid_off,percentage_laid_off,`date`, stage, country, funds_raised_millions,
+		ROW_NUMBER() OVER (
+			PARTITION BY company, location, industry, total_laid_off,percentage_laid_off,`date`, stage, country, funds_raised_millions
+			) AS row_num
+	FROM 
+		world_layoffs.layoffs_staging
+) duplicates
+WHERE 
+	row_num > 1
+)
+DELETE
+FROM DELETE_CTE
+;
