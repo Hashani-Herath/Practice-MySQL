@@ -34,3 +34,10 @@ FROM (
 ) duplicates
 WHERE 
 	row_num > 1;
+    
+-- let's just look at oda to confirm
+SELECT *
+FROM world_layoffs.layoffs_staging
+WHERE company = 'Oda'
+;
+-- it looks like these are all legitimate entries and shouldn't be deleted. We need to really look at every single row to be accurate
