@@ -9,3 +9,17 @@ LIKE world_layoffs.layoffs;
 
 INSERT layoffs_staging 
 SELECT * FROM world_layoffs.layoffs;
+
+-- 1. Remove Duplicates
+
+# First let's check for duplicates
+
+SELECT *
+FROM world_layoffs.layoffs_staging;
+
+SELECT company, industry, total_laid_off,`date`,
+		ROW_NUMBER() OVER (
+			PARTITION BY company, industry, total_laid_off,`date`) AS row_num
+	FROM 
+		world_layoffs.layoffs_staging;
+
