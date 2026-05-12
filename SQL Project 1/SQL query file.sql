@@ -262,3 +262,12 @@ SELECT DISTINCT country
 FROM world_layoffs.layoffs_staging2
 ORDER BY country;
 
+-- Let's also fix the date columns:
+SELECT *
+FROM world_layoffs.layoffs_staging2;
+
+-- we can use str to date to update this field
+-- SET SQL_SAFE_UPDATES = 0;
+UPDATE layoffs_staging2
+SET `date` = STR_TO_DATE(`date`, '%m/%d/%Y');
+-- SET SQL_SAFE_UPDATES = 1;
