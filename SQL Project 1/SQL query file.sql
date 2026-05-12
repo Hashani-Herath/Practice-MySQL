@@ -222,3 +222,16 @@ WHERE industry IS NULL
 OR industry = ''
 ORDER BY industry;
 
+-- ---------------------------------------------------
+
+-- I also noticed the Crypto has multiple different variations. We need to standardize that - let's say all to Crypto
+SELECT DISTINCT industry
+FROM world_layoffs.layoffs_staging2
+ORDER BY industry;
+
+SET SQL_SAFE_UPDATES = 0;
+UPDATE layoffs_staging2
+SET industry = 'Crypto'
+WHERE industry IN ('Crypto Currency', 'CryptoCurrency');
+SET SQL_SAFE_UPDATES = 1;
+
