@@ -85,3 +85,8 @@ WHERE (company, location, industry, total_laid_off, percentage_laid_off, `date`,
 	SELECT company, location, industry, total_laid_off, percentage_laid_off, `date`, stage, country, funds_raised_millions, row_num
 	FROM DELETE_CTE
 ) AND row_num > 1;
+
+-- one solution, which I think is a good one. Is to create a new column and add those row numbers in. Then delete where row numbers are over 2, then delete that column
+-- so let's do it!!
+
+ALTER TABLE world_layoffs.layoffs_staging ADD row_num INT;
