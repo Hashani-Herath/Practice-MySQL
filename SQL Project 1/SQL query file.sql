@@ -229,11 +229,11 @@ SELECT DISTINCT industry
 FROM world_layoffs.layoffs_staging2
 ORDER BY industry;
 
-SET SQL_SAFE_UPDATES = 0;
+-- SET SQL_SAFE_UPDATES = 0;
 UPDATE layoffs_staging2
 SET industry = 'Crypto'
 WHERE industry IN ('Crypto Currency', 'CryptoCurrency');
-SET SQL_SAFE_UPDATES = 1;
+-- SET SQL_SAFE_UPDATES = 1;
 
 -- now that's taken care of:
 SELECT DISTINCT industry
@@ -251,3 +251,14 @@ FROM world_layoffs.layoffs_staging2;
 SELECT DISTINCT country
 FROM world_layoffs.layoffs_staging2
 ORDER BY country;
+
+-- SET SQL_SAFE_UPDATES = 0;
+UPDATE layoffs_staging2
+SET country = TRIM(TRAILING '.' FROM country);
+-- SET SQL_SAFE_UPDATES = 1;
+
+-- now if we run this again it is fixed
+SELECT DISTINCT country
+FROM world_layoffs.layoffs_staging2
+ORDER BY country;
+
