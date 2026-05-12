@@ -235,3 +235,19 @@ SET industry = 'Crypto'
 WHERE industry IN ('Crypto Currency', 'CryptoCurrency');
 SET SQL_SAFE_UPDATES = 1;
 
+-- now that's taken care of:
+SELECT DISTINCT industry
+FROM world_layoffs.layoffs_staging2
+ORDER BY industry;
+
+
+-- --------------------------------------------------
+-- we also need to look at 
+
+SELECT *
+FROM world_layoffs.layoffs_staging2;
+
+-- everything looks good except apparently we have some "United States" and some "United States." with a period at the end. Let's standardize this.
+SELECT DISTINCT country
+FROM world_layoffs.layoffs_staging2
+ORDER BY country;
