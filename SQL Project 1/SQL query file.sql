@@ -142,7 +142,7 @@ WHERE row_num > 1;
 DELETE FROM world_layoffs.layoffs_staging2
 WHERE row_num >= 2;
 
--- If DELETE funtion didn't work use this 
+-- If DELETE funtion didn't work use this. It's bcz error - using safe update mode
 -- SET SQL_SAFE_UPDATES = 0;
 -- DELETE FROM world_layoffs.layoffs_staging2
 -- WHERE row_num >= 2;
@@ -186,3 +186,20 @@ WHERE company LIKE 'airbnb%';
 UPDATE world_layoffs.layoffs_staging2
 SET industry = NULL
 WHERE industry = '';
+
+-- If above funtion didn't work use this. it's bcz error - using safe update mode
+-- SET SQL_SAFE_UPDATES = 0;
+-- UPDATE world_layoffs.layoffs_staging2
+-- SET industry = NULL
+-- WHERE industry = '';
+-- SET SQL_SAFE_UPDATES = 1;
+
+
+-- now if we check those are all null
+
+SELECT *
+FROM world_layoffs.layoffs_staging2
+WHERE industry IS NULL 
+OR industry = ''
+ORDER BY industry;
+
