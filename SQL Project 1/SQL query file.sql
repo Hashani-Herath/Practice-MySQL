@@ -215,3 +215,10 @@ WHERE t1.industry IS NULL
 AND t2.industry IS NOT NULL;
 -- SET SQL_SAFE_UPDATES = 1;
 
+-- and if we check it looks like Bally's was the only one without a populated row to populate this null values
+SELECT *
+FROM world_layoffs.layoffs_staging2
+WHERE industry IS NULL 
+OR industry = ''
+ORDER BY industry;
+
