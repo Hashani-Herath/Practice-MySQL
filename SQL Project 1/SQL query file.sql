@@ -133,3 +133,18 @@ SELECT `company`,
 	FROM 
 		world_layoffs.layoffs_staging;
 
+-- now that we have this we can delete rows were row_num is greater than 2
+
+SELECT * 
+FROM world_layoffs.layoffs_staging2 
+WHERE row_num > 1;
+
+DELETE FROM world_layoffs.layoffs_staging2
+WHERE row_num >= 2;
+
+-- If DELETE funtion didn't work use this 
+-- SET SQL_SAFE_UPDATES = 0;
+-- DELETE FROM world_layoffs.layoffs_staging2
+-- WHERE row_num >= 2;
+-- SET SQL_SAFE_UPDATES = 1;
+
