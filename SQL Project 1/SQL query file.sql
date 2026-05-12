@@ -148,3 +148,41 @@ WHERE row_num >= 2;
 -- WHERE row_num >= 2;
 -- SET SQL_SAFE_UPDATES = 1;
 
+
+
+
+
+-- 2. Standardize Data
+
+SELECT * 
+FROM world_layoffs.layoffs_staging2;
+
+-- if we look at industry it looks like we have some null and empty rows, let's take a look at these
+SELECT DISTINCT industry
+FROM world_layoffs.layoffs_staging2
+ORDER BY industry;
+
+SELECT *
+FROM world_layoffs.layoffs_staging2
+WHERE industry IS NULL 
+OR industry = ''
+ORDER BY industry;
+
+-- let's take a look at these
+SELECT *
+FROM world_layoffs.layoffs_staging2
+WHERE company LIKE 'Bally%';
+-- nothing wrong here
+SELECT *
+FROM world_layoffs.layoffs_staging2
+WHERE company LIKE 'airbnb%';
+
+-- it looks like airbnb is a travel, but this one just isn't populated.
+-- sure, it's the same for the others. What we can do is
+-- write a query that if there is another row with the same company name, it will update it to the non-null industry values
+-- makes it easy so if there were thousands we wouldn't have to manually check them all
+
+-- we should set the blanks to nulls since those are typically easier to work with
+UPDATE world_layoffs.layoffs_staging2
+SET industry = NULL
+WHERE industry = '';
