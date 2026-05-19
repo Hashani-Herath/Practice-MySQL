@@ -16,3 +16,9 @@ FROM world_layoffs.layoffs_staging2;
 SELECT MAX(percentage_laid_off),  MIN(percentage_laid_off)
 FROM world_layoffs.layoffs_staging2
 WHERE  percentage_laid_off IS NOT NULL;
+
+-- Which companies had 1 which is basically 100 percent of they company laid off
+SELECT *
+FROM world_layoffs.layoffs_staging2
+WHERE  percentage_laid_off = 1;
+-- these are mostly startups it looks like who all went out of business during this time
