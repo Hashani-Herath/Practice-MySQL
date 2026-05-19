@@ -7,3 +7,7 @@
 SELECT * 
 FROM world_layoffs.layoffs_staging2;
 
+-- EASIER QUERIES
+
+SELECT MAX(total_laid_off)
+FROM world_layoffs.layoffs_staging2;
