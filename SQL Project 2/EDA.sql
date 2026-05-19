@@ -29,3 +29,20 @@ FROM world_layoffs.layoffs_staging2
 WHERE  percentage_laid_off = 1
 ORDER BY funds_raised_millions DESC;
 -- BritishVolt looks like an EV company, Quibi! I recognize that company - wow raised like 2 billion dollars and went under - ouch
+
+-- SOMEWHAT TOUGHER AND MOSTLY USING GROUP BY--------------------------------------------------------------------------------------------------
+
+-- Companies with the biggest single Layoff
+
+SELECT company, total_laid_off
+FROM world_layoffs.layoffs_staging
+ORDER BY 2 DESC
+LIMIT 5;
+-- now that's just on a single day
+
+-- Companies with the most Total Layoffs
+SELECT company, SUM(total_laid_off)
+FROM world_layoffs.layoffs_staging2
+GROUP BY company
+ORDER BY 2 DESC
+LIMIT 10;
