@@ -11,3 +11,8 @@ FROM world_layoffs.layoffs_staging2;
 
 SELECT MAX(total_laid_off)
 FROM world_layoffs.layoffs_staging2;
+
+-- Looking at Percentage to see how big these layoffs were
+SELECT MAX(percentage_laid_off),  MIN(percentage_laid_off)
+FROM world_layoffs.layoffs_staging2
+WHERE  percentage_laid_off IS NOT NULL;
